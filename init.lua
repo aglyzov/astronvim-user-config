@@ -18,7 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "astrodark",
+  colorscheme = "nordfox",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -69,6 +69,17 @@ return {
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
+    if vim.g.neovide then
+      -- Neovide (neovim gui) configuration
+      vim.keymap.set('v', '<D-c>', '"+y') -- Copy
+      vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
+      vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
+      vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
+      vim.keymap.set('i', '<D-v>', '<C-R>+') -- Paste insert mode
+
+      vim.g.neovide_cursor_vfx_mode = ""
+    end
+
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
